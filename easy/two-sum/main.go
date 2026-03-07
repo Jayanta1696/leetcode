@@ -1,10 +1,24 @@
 // main.go
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"flag"
+)
 
 func main() {
-    nums := []int{2, 7, 11, 15}
-    target := 9
-    fmt.Println(twoSum(nums, target)) // should print [0 1]
+
+	algo := flag.String("algo", "brute-force", "the algorithm to use")
+	flag.Parse()
+	
+	var nums = []int{2, 7, 11, 15}
+	var target = 9
+	
+	switch *algo {
+	case "hash":
+		fmt.Println(twoSumHash(nums, target))
+	default:
+		fmt.Println(twoSumBrute(nums, target))
+	}
+
 }
